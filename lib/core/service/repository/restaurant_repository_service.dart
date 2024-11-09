@@ -211,8 +211,8 @@ class RestaurantRepositoryService{
   }
 
   static Future<Restaurant> remPhone(String id) async {
-    final idClient = await getUserID();
-    final endpointUri = Uri.parse("$kApiRequest/remphone/$idClient/$id");
+    final idRestaurant = await getUserID();
+    final endpointUri = Uri.parse("$kApiRequest/remphone/$idRestaurant/$id");
 
     final response = await http.delete(
       endpointUri,

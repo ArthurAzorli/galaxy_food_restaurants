@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:galaxy_food_restaurants/core/domain/order_status.dart';
 import 'package:galaxy_food_restaurants/core/service/repository/repository_service.dart';
 import 'package:galaxy_food_restaurants/core/service/repository/restaurant_repository_service.dart';
 import 'package:galaxy_food_restaurants/core/utils/bytes.dart';
@@ -9,7 +10,6 @@ import '../../utils/exception/repository_exception.dart';
 class BuyRepositoryService {
 
   static const String kApiRequest = "http://${RepositoryService.kIpAddressServer}:${RepositoryService.kPortServer}/buy";
-
 
   static Future<List<Buy>> getAll() async {
     final idRestaurant = await RestaurantRepositoryService.getUserID();
@@ -57,9 +57,9 @@ class BuyRepositoryService {
     }
   }
 
-  static Future<Buy> cancel(String id) async {
+  static Future<Buy> updateStatus(String id, OrderStatus status) async {
     final idRestaurant = await RestaurantRepositoryService.getUserID();
-    final endpointUri = Uri.parse("$kApiRequest/cancel/$idRestaurant/$id");
+    final endpointUri = Uri.parse("$kApiRequest/updatestatus/$idRestaurant/$id?status=${status.code}");
 
     final response = await http.put(
       endpointUri,
