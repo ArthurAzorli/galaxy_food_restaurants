@@ -18,6 +18,9 @@ class Restaurant{
   late List<Phone> phones;
   late RestaurantOwner owner;
 
+  @JsonKey(includeFromJson: false, includeToJson: true, name: "password")
+  String? _password;
+
   Restaurant({
     required this.id,
     required this.cnpj,
@@ -30,6 +33,8 @@ class Restaurant{
     required this.phones,
     required this.owner
   });
+
+  set password(String password) => _password = password;
 
   factory Restaurant.fromJson(Map<String, dynamic> json) => _$RestaurantFromJson(json);
 

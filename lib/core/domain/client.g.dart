@@ -30,5 +30,4 @@ Map<String, dynamic> _$ClientToJson(Client instance) => <String, dynamic>{
       'birthDate': instance.birthDate.toIso8601String(),
       'addresses': instance.addresses,
       'phones': instance.phones,
-      'password': instance._password,
     };

@@ -15,9 +15,6 @@ class Client{
   late final List<Address> addresses;
   late final List<Phone> phones;
 
-  @JsonKey(includeFromJson: false, includeToJson: true, name: "password")
-  String? _password;
-
   Client({
     required this.id,
     required this.cpf,
@@ -27,8 +24,6 @@ class Client{
     this.addresses = const [],
     this.phones = const []
   });
-
-  set password(String password) => _password = password;
 
   factory Client.fromJson(Map<String, dynamic> json) => _$ClientFromJson(json);
 

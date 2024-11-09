@@ -19,6 +19,7 @@ class Combo extends PackageItem{
 
   factory Combo.fromJson(Map<String, dynamic> json) => _$ComboFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$ComboToJson(this);
 
   @override
@@ -35,13 +36,13 @@ class Combo extends PackageItem{
 
 @JsonSerializable()
 class ComboItem {
-  late final String id;
+  final String? id;
   late final int quantity;
   late final String combo;
   late final Food item;
 
   ComboItem({
-    required this.id,
+    this.id,
     required this.quantity,
     required this.combo,
     required this.item
@@ -63,7 +64,7 @@ class ComboItem {
 }
 
 extension ComboItems on  List<ComboItem>{
-  String get ListToString{
+  String get listToString{
     final buffer = StringBuffer();
 
     for (final item in this){

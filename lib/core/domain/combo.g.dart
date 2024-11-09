@@ -7,7 +7,7 @@ part of 'combo.dart';
 // **************************************************************************
 
 Combo _$ComboFromJson(Map<String, dynamic> json) => Combo(
-      id: json['id'] as String,
+      id: json['id'] as String?,
       name: json['name'] as String,
       price: (json['price'] as num).toDouble(),
       parent: json['parent'] as String,
@@ -27,7 +27,7 @@ Map<String, dynamic> _$ComboToJson(Combo instance) => <String, dynamic>{
     };
 
 ComboItem _$ComboItemFromJson(Map<String, dynamic> json) => ComboItem(
-      id: json['id'] as String,
+      id: json['id'] as String?,
       quantity: (json['quantity'] as num).toInt(),
       combo: json['combo'] as String,
       item: Food.fromJson(json['item'] as Map<String, dynamic>),

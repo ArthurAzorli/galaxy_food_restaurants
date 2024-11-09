@@ -7,7 +7,7 @@ part of 'package.dart';
 // **************************************************************************
 
 Package _$PackageFromJson(Map<String, dynamic> json) => Package(
-      id: json['id'] as String,
+      id: json['id'] as String?,
       name: json['name'] as String,
       parent: json['parent'] as String?,
       restaurant: json['restaurant'] as String,

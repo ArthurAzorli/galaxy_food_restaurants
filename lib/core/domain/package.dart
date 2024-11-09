@@ -14,7 +14,7 @@ class Package{
   late List<PackageItem> items;
 
   Package({
-    required this.id,
+    this.id,
     required this.name,
     required this.parent,
     required this.restaurant,

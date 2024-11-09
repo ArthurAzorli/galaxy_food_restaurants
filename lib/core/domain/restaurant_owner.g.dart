@@ -8,7 +8,7 @@ part of 'restaurant_owner.dart';
 
 RestaurantOwner _$RestaurantOwnerFromJson(Map<String, dynamic> json) =>
     RestaurantOwner(
-      id: json['id'] as String,
+      id: json['id'] as String?,
       rg: json['rg'] as String,
       cpf: json['cpf'] as String,
       birthDate: DateTime.parse(json['birthDate'] as String),

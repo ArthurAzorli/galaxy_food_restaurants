@@ -11,7 +11,7 @@ class RestaurantOwner {
   late String name;
 
   RestaurantOwner({
-    required this.id,
+    this.id,
     required this.rg,
     required this.cpf,
     required this.birthDate,

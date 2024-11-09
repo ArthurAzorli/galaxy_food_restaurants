@@ -15,7 +15,7 @@ abstract class PackageItem{
   late String parent;
 
   PackageItem({
-    required this.id,
+    this.id,
     required this.name,
     required this.price,
     this.image = const [],
