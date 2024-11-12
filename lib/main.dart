@@ -1,3 +1,4 @@
+import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -74,7 +75,7 @@ class AppState extends State<App>{
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return FluentApp.router(
       themeMode: ThemeMode.dark,
       theme: GalaxyFoodTheme.normal,
       routerConfig: _router,
