@@ -20,6 +20,8 @@ class GalaxyButton extends Button{
     super.style,
     super.focusNode,
     super.autofocus = true,
+    super.onTapDown,
+    super.onTapUp,
     this.icon,
     this.iconAlignment = IconAlignment.start,
     required Widget child
@@ -79,7 +81,6 @@ class _GalaxyButtonDefaultStyle extends ButtonStyle {
 
   _GalaxyButtonDefaultStyle(this.context, this.hasIcon);
 
-
   @override
   WidgetStateProperty<TextStyle?> get textStyle =>
       WidgetStatePropertyAll<TextStyle?>(GalaxyFoodTheme.text.labelLarge);
@@ -87,7 +88,7 @@ class _GalaxyButtonDefaultStyle extends ButtonStyle {
   @override
   WidgetStateProperty<Color?>? get backgroundColor =>
       WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-        if (states.contains(WidgetState.selected)){
+        if (states.contains(WidgetState.selected) || states.contains(WidgetState.pressed)){
           return _theme.activeColor;
         }
         if (states.contains(WidgetState.disabled)) {
@@ -102,7 +103,7 @@ class _GalaxyButtonDefaultStyle extends ButtonStyle {
         if (states.contains(WidgetState.disabled)) {
           return _theme.cardColor.withOpacity(0.38);
         }
-        return const Color(0xffffffff);
+        return Colors.white;
       });
 
 
@@ -127,9 +128,19 @@ class _GalaxyButtonDefaultStyle extends ButtonStyle {
 
   @override
   WidgetStateProperty<OutlinedBorder>? get shape =>
-      WidgetStatePropertyAll<OutlinedBorder>(RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5)
-      ));
+      WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+        return RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+          side: states.contains(WidgetState.selected) || states.contains(WidgetState.pressed)
+              ? BorderSide.none
+              : const BorderSide(
+                color: Colors.white,
+                width: 1.5,
+              )
+        );
+      });
+
+
 
 }
 

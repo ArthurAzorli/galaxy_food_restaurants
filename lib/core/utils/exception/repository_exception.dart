@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
+import 'package:galaxy_food_restaurants/galaxy_theme.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:on_popup_window_widget/on_popup_window_widget.dart';
 
 import '../../widgets/galaxy_button.dart';
 
@@ -26,26 +28,37 @@ class RepositoryException implements Exception{
         context: context,
         builder: (context)
         {
-          final theme = Theme.of(context);
-          return AlertDialog(
-
-            icon: Icon(
-                Icons.warning_amber_rounded, color: theme.colorScheme.secondary,
-                size: 65),
-            title: Text("Erro ${title??status}!", style: theme.textTheme.titleLarge),
-            content: Text(message, style: theme.textTheme.bodyLarge,
-              textAlign: TextAlign.center,),
-            actions: [
-              Center(
-                child: GalaxyButton(
-                    style: const ButtonStyle(
-                        fixedSize: WidgetStatePropertyAll(Size(200, 50))
-                    ),
-                    onPressed: onClose,
-                    child: const Text("FECHAR")
+          return OnPopupWindowWidget(
+            backgroundColor: GalaxyFoodTheme.normal.scaffoldBackgroundColor,
+            divider: null,
+            centerTitle: true,
+            title: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(FluentIcons.warning, color: Colors.white, size: 65),
+                Text("Erro ${title??status}!", style: GalaxyFoodTheme.text.titleLarge),
+              ],
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 25),
+                  child: Text(message, style: GalaxyFoodTheme.text.bodyLarge,
+                    textAlign: TextAlign.center,),
                 ),
-              )
-            ],
+
+                Center(
+                  child: SizedBox(
+                    height: 50,
+                    width: 200,
+                    child: GalaxyButton(
+                        onPressed: onClose,
+                        child: const Text("FECHAR")
+                    ),
+                  ),
+                )
+              ],
+            ),
           );
         }
     );
