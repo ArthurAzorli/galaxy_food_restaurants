@@ -15,7 +15,6 @@ class GalaxyFoodTheme {
       cardColor: const Color(0xff353535),
       fontFamily: 'Montserrat',
       navigationPaneTheme: const NavigationPaneThemeData(
-
         iconPadding: EdgeInsets.symmetric(vertical: 35, horizontal: 15),
         backgroundColor: Color(0xff9e1414),
         highlightColor: Color(0xfffafafa),

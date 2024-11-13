@@ -20,20 +20,28 @@ class _MainPageState extends State<MainPage>{
     return Observer(
       builder: (context) {
         return NavigationView(
+          contentShape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
           pane: NavigationPane(
             selected: viewModel.index,
+            displayMode: viewModel.displayMode,
             size: const NavigationPaneSize(
-              openMaxWidth: 250,
               openMinWidth: 80,
+              openMaxWidth: 250,
+              compactWidth: 80,
+            ),
+            menuButton: GestureDetector(
+              onTap: viewModel.onCollapseMenu,
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                child: Icon(FluentIcons.collapse_menu, size: 40, color: Colors.white,),
+              ),
             ),
             header: Padding(
-              padding: const EdgeInsets.only(top: 15, bottom: 50,),
-              child: Center(
-                child: Image.asset(
-                  "lib/images/galaxyfood_logo.png",
-                  width: 200,
-                  color: Colors.white,
-                ),
+              padding: const EdgeInsets.only(top: 60, bottom: 50,),
+              child: Image.asset(
+                "lib/images/galaxyfood_logo.png",
+                width: 125,
+                color: Colors.white,
               ),
             ),
             items: [

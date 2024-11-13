@@ -9,6 +9,22 @@ part of 'main_viewmodel.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MainViewModel on MainViewModelBase, Store {
+  late final _$displayModeAtom =
+      Atom(name: 'MainViewModelBase.displayMode', context: context);
+
+  @override
+  PaneDisplayMode get displayMode {
+    _$displayModeAtom.reportRead();
+    return super.displayMode;
+  }
+
+  @override
+  set displayMode(PaneDisplayMode value) {
+    _$displayModeAtom.reportWrite(value, super.displayMode, () {
+      super.displayMode = value;
+    });
+  }
+
   late final _$indexAtom =
       Atom(name: 'MainViewModelBase.index', context: context);
 
@@ -40,8 +56,20 @@ mixin _$MainViewModel on MainViewModelBase, Store {
   }
 
   @override
+  void onCollapseMenu() {
+    final _$actionInfo = _$MainViewModelBaseActionController.startAction(
+        name: 'MainViewModelBase.onCollapseMenu');
+    try {
+      return super.onCollapseMenu();
+    } finally {
+      _$MainViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+displayMode: ${displayMode},
 index: ${index}
     ''';
   }
