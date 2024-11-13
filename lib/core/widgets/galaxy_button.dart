@@ -1,24 +1,27 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:fluent_ui/fluent_ui.dart';
+import 'package:galaxy_food_restaurants/galaxy_theme.dart';
 
-class GalaxyButton extends ButtonStyleButton{
+enum IconAlignment{
+  start,
+  end
+}
 
+class GalaxyButton extends Button{
+
+  final IconAlignment iconAlignment;
   final Widget? icon;
 
   GalaxyButton({
     super.key,
     required super.onPressed,
     super.onLongPress,
-    super.onHover,
-    super.onFocusChange,
     super.style,
     super.focusNode,
     super.autofocus = true,
-    super.clipBehavior,
-    super.statesController,
-    super.iconAlignment,
     this.icon,
+    this.iconAlignment = IconAlignment.start,
     required Widget child
   }) : super(
     child: icon == null
@@ -36,7 +39,7 @@ class GalaxyButton extends ButtonStyleButton{
   ButtonStyle defaultStyleOf(BuildContext context) => _GalaxyButtonDefaultStyle(context, icon != null);
 
   @override
-  ButtonStyle? themeStyleOf(BuildContext context) => FilledButtonTheme.of(context).style;
+  ButtonStyle? themeStyleOf(BuildContext context) => ButtonTheme.of(context).defaultButtonStyle;
 
 }
 
@@ -72,27 +75,23 @@ class _GalaxyButtonDefaultStyle extends ButtonStyle {
 
   final BuildContext context;
   final bool hasIcon;
-  late final ColorScheme _colors = Theme.of(context).colorScheme;
+  final _theme = GalaxyFoodTheme.normal;
 
-  _GalaxyButtonDefaultStyle(this.context, this.hasIcon) : super(
-    animationDuration: kThemeChangeDuration,
-    enableFeedback: true,
-    alignment: Alignment.center,
-  );
+  _GalaxyButtonDefaultStyle(this.context, this.hasIcon);
 
 
   @override
   WidgetStateProperty<TextStyle?> get textStyle =>
-      WidgetStatePropertyAll<TextStyle?>(Theme.of(context).textTheme.labelLarge);
+      WidgetStatePropertyAll<TextStyle?>(GalaxyFoodTheme.text.labelLarge);
 
   @override
   WidgetStateProperty<Color?>? get backgroundColor =>
       WidgetStateProperty.resolveWith((Set<WidgetState> states) {
         if (states.contains(WidgetState.selected)){
-          return _colors.primary;
+          return _theme.activeColor;
         }
         if (states.contains(WidgetState.disabled)) {
-          return _colors.onSurface.withOpacity(0.12);
+          return _theme.cardColor.withOpacity(0.12);
         }
         return Colors.transparent;
       });
@@ -101,33 +100,15 @@ class _GalaxyButtonDefaultStyle extends ButtonStyle {
   WidgetStateProperty<Color?>? get foregroundColor =>
       WidgetStateProperty.resolveWith((Set<WidgetState> states) {
         if (states.contains(WidgetState.disabled)) {
-          return _colors.onSurface.withOpacity(0.38);
+          return _theme.cardColor.withOpacity(0.38);
         }
-        return _colors.secondary;
+        return const Color(0xffffffff);
       });
 
-  @override
-  WidgetStateProperty<Color?>? get overlayColor =>
-      WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-        if (states.contains(WidgetState.pressed)) {
-          return _colors.primary;
-        }
-        if (states.contains(WidgetState.hovered)) {
-          return _colors.primary.withOpacity(0.08);
-        }
-        if (states.contains(WidgetState.focused)) {
-          return _colors.primary.withOpacity(0.1);
-        }
-        return null;
-      });
 
   @override
   WidgetStateProperty<Color>? get shadowColor =>
-      WidgetStatePropertyAll<Color>(_colors.shadow);
-
-  @override
-  WidgetStateProperty<Color>? get surfaceTintColor =>
-      const WidgetStatePropertyAll<Color>(Colors.transparent);
+      WidgetStatePropertyAll<Color>(_theme.shadowColor);
 
   @override
   WidgetStateProperty<double>? get elevation =>
@@ -142,27 +123,6 @@ class _GalaxyButtonDefaultStyle extends ButtonStyle {
   WidgetStateProperty<EdgeInsetsGeometry>? get padding =>
       WidgetStatePropertyAll<EdgeInsetsGeometry>(_scaledPadding(context, hasIcon));
 
-  @override
-  WidgetStateProperty<Size>? get minimumSize =>
-      const WidgetStatePropertyAll<Size>(Size(64.0, 40.0));
-
-  // No default fixedSize
-
-  @override
-  WidgetStateProperty<Size>? get maximumSize =>
-      const WidgetStatePropertyAll<Size>(Size.infinite);
-
-  @override
-  WidgetStateProperty<BorderSide?>? get side =>
-    WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-      if (states.contains(WidgetState.selected) || states.contains(WidgetState.pressed)){
-        return null;
-      }
-      return BorderSide(
-        color: _colors.secondary,
-        width: 1.5,
-      );
-    });
 
 
   @override
@@ -171,45 +131,36 @@ class _GalaxyButtonDefaultStyle extends ButtonStyle {
         borderRadius: BorderRadius.circular(5)
       ));
 
-  @override
-  WidgetStateProperty<MouseCursor?>? get mouseCursor =>
-      WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled)) {
-          return SystemMouseCursors.basic;
-        }
-        return SystemMouseCursors.click;
-      });
-
-  @override
-  VisualDensity? get visualDensity => Theme.of(context).visualDensity;
-
-  @override
-  MaterialTapTargetSize? get tapTargetSize => Theme.of(context).materialTapTargetSize;
-
-  @override
-  InteractiveInkFeatureFactory? get splashFactory => Theme.of(context).splashFactory;
 }
 
 EdgeInsetsGeometry _scaledPadding(BuildContext context, [bool hasIcon = false]) {
 
-  final ThemeData theme = Theme.of(context);
-  final double defaultFontSize = theme.textTheme.labelLarge?.fontSize ?? 14.0;
+  final double defaultFontSize = GalaxyFoodTheme.text.labelLarge?.fontSize ?? 14.0;
   final double effectiveTextScale = MediaQuery.textScalerOf(context).scale(defaultFontSize) / 14.0;
-  final double padding1x = theme.useMaterial3 ? 24.0 : 16.0;
+  const padding1x = 24.0;
+
+  var geometry1x = const EdgeInsets.symmetric(horizontal: padding1x, vertical: padding1x * 2 / 3);
+  var geometry2x = const EdgeInsets.symmetric(horizontal: padding1x / 2, vertical: padding1x / 3);
+  var geometry3x = const EdgeInsets.symmetric(horizontal: padding1x / 2 / 2, vertical: padding1x / 3 / 2);
 
   if (hasIcon) {
-    return ButtonStyleButton.scaledPadding(
-       EdgeInsets.only(left: padding1x * 2 / 3, right:  padding1x, top: padding1x * 2 / 3, bottom: padding1x * 2 / 3),
-       EdgeInsets.only(left: padding1x / 3, right:  padding1x / 2,  top: padding1x / 3, bottom: padding1x / 3),
-       EdgeInsets.only(left: padding1x / 3 / 2, right:  padding1x / 2 / 2,  top: padding1x / 3 / 2, bottom: padding1x / 3 / 2),
-      effectiveTextScale
-    );
+
+    geometry1x = const EdgeInsets.only(left: padding1x * 2 / 3, right:  padding1x, top: padding1x * 2 / 3, bottom: padding1x * 2 / 3);
+    geometry2x = const EdgeInsets.only(left: padding1x / 3, right:  padding1x / 2,  top: padding1x / 3, bottom: padding1x / 3);
+    geometry3x = const EdgeInsets.only(left: padding1x / 3 / 2, right:  padding1x / 2 / 2,  top: padding1x / 3 / 2, bottom: padding1x / 3 / 2);
+
   }
 
-  return ButtonStyleButton.scaledPadding(
-    EdgeInsets.symmetric(horizontal: padding1x, vertical: padding1x * 2 / 3),
-    EdgeInsets.symmetric(horizontal: padding1x / 2, vertical: padding1x / 3),
-    EdgeInsets.symmetric(horizontal: padding1x / 2 / 2, vertical: padding1x / 3 / 2),
-    effectiveTextScale,
-  );
+  return switch (effectiveTextScale) {
+    <= 1 => geometry1x,
+    < 2  => EdgeInsetsGeometry.lerp(geometry1x, geometry2x, effectiveTextScale - 1)!,
+    < 3  => EdgeInsetsGeometry.lerp(geometry2x, geometry3x, effectiveTextScale - 2)!,
+    _    => geometry3x,
+  };
+
+
+
+
+
+
 }
