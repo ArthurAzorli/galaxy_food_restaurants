@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart' as material;
 import 'package:galaxy_food_restaurants/galaxy_theme.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:on_popup_window_widget/on_popup_window_widget.dart';
@@ -30,19 +31,19 @@ class RepositoryException implements Exception{
         {
           return OnPopupWindowWidget(
             backgroundColor: GalaxyFoodTheme.normal.scaffoldBackgroundColor,
-            divider: null,
+            divider: Container(),
             centerTitle: true,
             title: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(FluentIcons.warning, color: Colors.white, size: 65),
+                const Icon(material.Icons.warning_amber_outlined, color: Colors.white, size: 65),
                 Text("Erro ${title??status}!", style: GalaxyFoodTheme.text.titleLarge),
               ],
             ),
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 25),
+                  padding: const EdgeInsets.only(bottom: 30),
                   child: Text(message, style: GalaxyFoodTheme.text.bodyLarge,
                     textAlign: TextAlign.center,),
                 ),

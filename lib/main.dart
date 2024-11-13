@@ -1,10 +1,10 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/utils/route/go_route.dart';
+import 'feature/signin_page/signin_page.dart';
 import 'galaxy_theme.dart';
 
 
@@ -28,12 +28,12 @@ main(){
 GoRouter _router = GoRouter(
   initialLocation: "/signin",
   routes: [
-    /*GoRouteUtils.buildHorizontalRoute(
+    GoRouteUtils.buildHorizontalRoute(
       path: "/signin",
       buildChild: (BuildContext context, GoRouterState state) => const SignInPage(),
       restorationId: "SignIn-Page"
     ),
-
+/*
     GoRouteUtils.buildHorizontalRoute(
         path: "/signup",
         buildChild: (BuildContext context, GoRouterState state) => const SignUpPage(),
