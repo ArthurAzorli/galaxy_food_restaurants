@@ -1,5 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as material;
 
 class GalaxyFoodTheme {
 
@@ -14,11 +14,17 @@ class GalaxyFoodTheme {
       inactiveBackgroundColor: const Color(0xff2c2c2c),
       cardColor: const Color(0xff353535),
       fontFamily: 'Montserrat',
+      navigationPaneTheme: const NavigationPaneThemeData(
+
+        iconPadding: EdgeInsets.symmetric(vertical: 35, horizontal: 15),
+        backgroundColor: Color(0xff9e1414),
+        highlightColor: Color(0xfffafafa),
+      )
     );
   }
 
-  static TextTheme get text {
-    return const TextTheme(
+  static material.TextTheme get text {
+    return const material.TextTheme(
       displayLarge: TextStyle(
         fontFamily: 'Montserrat',
         color: Color(0xff000000),

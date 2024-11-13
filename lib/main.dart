@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/utils/route/go_route.dart';
+import 'feature/main_page/main_page.dart';
 import 'feature/signin_page/signin_page.dart';
 import 'galaxy_theme.dart';
 
@@ -39,14 +40,14 @@ GoRouter _router = GoRouter(
         buildChild: (BuildContext context, GoRouterState state) => const SignUpPage(),
         restorationId: "SignUp-Page"
     ),
-
+*/
     GoRouteUtils.buildHorizontalRoute(
         path: "/",
         buildChild: (BuildContext context, GoRouterState state) => const MainPage(),
         restorationId: "Main-Page",
         routes: [
 
-          GoRouteUtils.buildHorizontalRoute(
+          /*GoRouteUtils.buildHorizontalRoute(
             path: "restaurant",
             buildChild: (BuildContext context, GoRouterState state) => const RestaurantPage(),
             restorationId: "Restaurant-Page"
@@ -56,10 +57,10 @@ GoRouter _router = GoRouter(
               path: "edit",
               buildChild: (BuildContext context, GoRouterState state) => const EditUserPage(),
               restorationId: "EditUser-Page"
-          )
+          )*/
 
         ]
-    ),*/
+    ),
   ],
 );
 
@@ -76,7 +77,7 @@ class AppState extends State<App>{
   @override
   Widget build(BuildContext context) {
     return FluentApp.router(
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       theme: GalaxyFoodTheme.normal,
       routerConfig: _router,
     );
