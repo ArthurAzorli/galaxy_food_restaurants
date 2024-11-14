@@ -2,9 +2,7 @@ import 'dart:convert';
 
 import 'package:galaxy_food_restaurants/core/service/repository/repository_service.dart';
 import 'package:galaxy_food_restaurants/core/utils/bytes.dart';
-import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
-import '../../domain/restaurant.dart';
 import '../../domain/restaurant_owner.dart';
 import '../../utils/exception/repository_exception.dart';
 

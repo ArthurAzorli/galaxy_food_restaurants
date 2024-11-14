@@ -1,9 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:galaxy_food_restaurants/core/service/repository/restaurant_repository_service.dart';
-import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobx/mobx.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/utils/exception/repository_exception.dart';
 
@@ -57,7 +55,6 @@ abstract class SignInViewModelBase with Store{
 
       try{
         await RestaurantRepositoryService.login(user: email, password: password);
-        GetIt.I.get<SharedPreferencesWithCache>().remove("address");
         context.go("/");
 
       } on RepositoryException catch(e) {

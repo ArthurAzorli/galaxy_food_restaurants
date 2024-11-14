@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:galaxy_food_restaurants/feature/home_page/home_page.dart';
 import 'package:galaxy_food_restaurants/feature/main_page/main_viewmodel.dart';
 import 'package:galaxy_food_restaurants/galaxy_theme.dart';
 
@@ -50,9 +51,7 @@ class _MainPageState extends State<MainPage>{
                   title: Text("HOME", style: GalaxyFoodTheme.text.titleMedium,),
                   body: Container(
                     color: GalaxyFoodTheme.normal.scaffoldBackgroundColor,
-                    child: const Center(
-                      child: Text("Home"),
-                    ),
+                    child: const HomePage(),
                   ),
               ),
               PaneItem(
