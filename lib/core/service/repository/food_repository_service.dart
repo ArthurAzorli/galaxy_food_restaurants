@@ -87,6 +87,34 @@ class FoodRepositoryService{
     }
   }
 
+
+  static Future<int> getCountFood(String idRestaurant) async {
+    final endpointUri = Uri.parse("$kApiRequest/get/$idRestaurant");
+
+    final response = await http.get(
+      endpointUri,
+      headers: {
+        'Content-Type':'application/json; charset=UTF-8'
+      },
+    ).timeout(
+        const Duration(seconds: 5),
+        onTimeout: (){
+          throw RepositoryException(status: 408, message: "Falha ao conectar com servidor!");
+        }
+    );
+
+    if (response.statusCode == 200){
+
+      List foodsJson = jsonDecode(response.bodyBytes.toUTF8);
+      return foodsJson.map((buy){
+        return Food.fromJson(buy);
+      }).toList().length;
+
+    } else {
+      throw RepositoryException.fromJson(jsonDecode(response.bodyBytes.toUTF8));
+    }
+  }
+
   static Future<Food> update(Food food) async {
     final idRestaurant = await RestaurantRepositoryService.getUserID();
     final endpointUri = Uri.parse("$kApiRequest/update/$idRestaurant/${food.id}");

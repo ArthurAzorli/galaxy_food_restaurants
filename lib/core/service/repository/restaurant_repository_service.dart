@@ -14,7 +14,6 @@ class RestaurantRepositoryService{
   static const String kApiRequest = "http://${RepositoryService.kIpAddressServer}:${RepositoryService.kPortServer}/restaurant";
 
   static Future<bool> login({required String user, required String password}) async {
-    return true;
     final endpointUri = Uri.parse("$kApiRequest/login");
 
     final json = {
@@ -39,7 +38,7 @@ class RestaurantRepositoryService{
       final jsonResponse = jsonDecode(response.bodyBytes.toUTF8);
       final prefs = await GetIt.I.getAsync<SharedPreferencesWithCache>();
       prefs.setString("user", jsonResponse["data"]);
-      //return jsonResponse["result"];//TODO::trocar depois dos testes
+      return jsonResponse["result"];
     } else {
       throw RepositoryException.fromJson(jsonDecode(response.bodyBytes.toUTF8));
     }
@@ -47,16 +46,16 @@ class RestaurantRepositoryService{
 
   static Future<Restaurant> getUser() async {
     final prefs = await GetIt.I.getAsync<SharedPreferencesWithCache>();
-    final idUser = "d0c8e28e-7623-41b8-a465-b48b198c6765"; //prefs.getString("user");
+    final idUser = prefs.getString("user");
     if (idUser == null) throw RepositoryException(status: 404, message:  "Você está Deslogado!");
     return RestaurantRepositoryService.get(idUser);
   }
 
   static Future<String> getUserID() async {
-    return "d0c8e28e-7623-41b8-a465-b48b198c6765";//TODO:: remove o id depois dos testes
     final prefs = await GetIt.I.getAsync<SharedPreferencesWithCache>();
     final idUser = prefs.getString("user");
     if (idUser == null) throw RepositoryException(status: 404, message:  "Você está Deslogado!");
+    return idUser;
   }
 
   static Future<Restaurant> create(Restaurant restaurant) async {
