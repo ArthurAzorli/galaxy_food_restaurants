@@ -66,7 +66,7 @@ class HomePageState extends State<HomePage>{
                     ]
                 ),
                 child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
                     child: Column(
                       children: [
 
@@ -100,188 +100,198 @@ class HomePageState extends State<HomePage>{
             }
           ),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
+          Padding(
+            padding: const EdgeInsets.only(top: 17.5),
+            child: SizedBox(
+              width: 700,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      color: GalaxyFoodTheme.normal.cardColor,
-                    ),
-                    margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                    padding: const EdgeInsets.all(25),
-                    width: 325,
-                    child: Row(
-                      children: [
+                  Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                          color: GalaxyFoodTheme.normal.cardColor,
+                        ),
+                        margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                        padding: const EdgeInsets.all(25),
+                        width: 325,
+                        child: Row(
+                          children: [
 
-                        SizedBox(
-                          width: 275,
+                            SizedBox(
+                              width: 275,
+                              child: Observer(
+                                builder: (context) {
+                                  return Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(bottom: 10),
+                                        child: Text("ENDEREÇO:", style: GalaxyFoodTheme.text.titleSmall,),
+                                      ),
+                                      Text(viewModel.restaurant?.address.toString()??"", style: GalaxyFoodTheme.text.bodyMedium,)
+                                    ],
+                                  );
+                                }
+                              ),
+                            ),
+
+
+                          ],
+                        ),
+                      ),
+
+
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                          color: GalaxyFoodTheme.normal.cardColor,
+                        ),
+                        margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                        width: 325,
+                        child: Padding(
+                          padding: const EdgeInsets.all(25),
+                          child: Row(
+                            children: [
+
+                              SizedBox(
+                                width: 275,
+                                child: Observer(
+                                    builder: (context) {
+
+                                      final list = List.generate(
+                                          viewModel.restaurant?.phones.length??0,
+                                          (index){
+                                            return ListTile(
+                                              title: Text(viewModel.restaurant!.phones[index].phone),
+                                            );
+                                          }
+                                      );
+
+                                      return Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+
+                                          Padding(
+                                            padding: const EdgeInsets.only(bottom: 10),
+                                            child: Text("TELEFONES:", style: GalaxyFoodTheme.text.titleSmall,),
+                                          ),
+
+                                          Builder(
+                                            builder: (context) {
+                                              return Container(
+                                                height: 250,
+                                                width: double.maxFinite,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                                                  color: GalaxyFoodTheme.normal.menuColor,
+                                                ),
+                                                padding: const EdgeInsets.all(20),
+                                                child: SingleChildScrollView(
+                                                  child: Column(
+                                                    children: list,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                          ),
+                                        ],
+                                      );
+                                    }
+                                ),
+                              ),
+
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                          color: GalaxyFoodTheme.normal.cardColor,
+                        ),
+                        margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                        child: Padding(
+                          padding: const EdgeInsets.all(25),
                           child: Observer(
+                            builder: (context) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 15),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          viewModel.restaurant?.score.toStringAsFixed(1)??"0.0",
+                                          style: GalaxyFoodTheme.text.headlineMedium,
+                                        ),
+                                        const Icon(material.Icons.star, color: material.Colors.amber, size: 30,),
+                                      ],
+                                    ),
+                                  ),
+
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(Radius.circular(5)),
+                                      color: GalaxyFoodTheme.normal.menuColor,
+                                    ),
+                                    padding: const EdgeInsets.all(20),
+                                    child: Column(
+                                      children: [
+                                        Text("${viewModel.qtdOrders}  PEDIDOS REALIZADOS"),
+                                        Text("${viewModel.qtdFoods} COMIDAS DISPONÍVEIS"),
+                                        Text("${viewModel.qtdCombos}  COMBOS DISPONÍVEIS"),
+                                      ],
+                                    ),
+                                  ),
+
+                                ],
+                              );
+                            }
+                          ),
+                        ),
+                      ),
+
+
+                      Container(
+                        width: 275,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(Radius.circular(20)),
+                          color: GalaxyFoodTheme.normal.cardColor,
+                        ),
+                        margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                        padding: const EdgeInsets.all(25),
+                        child: Observer(
                             builder: (context) {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 10),
-                                    child: Text("ENDEREÇO:", style: GalaxyFoodTheme.text.titleSmall,),
+                                    child: Text("DONO:", style: GalaxyFoodTheme.text.titleSmall,),
                                   ),
-                                  Text(viewModel.restaurant?.address.toString()??"", style: GalaxyFoodTheme.text.bodyMedium,)
+                                  Text(viewModel.restaurant?.owner.name??"", style: GalaxyFoodTheme.text.bodyLarge,),
+                                  Text(viewModel.restaurant?.owner.cpf??"", style: GalaxyFoodTheme.text.bodyLarge,)
                                 ],
                               );
                             }
-                          ),
                         ),
-
-
-                      ],
-                    ),
-                  ),
-
-
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      color: GalaxyFoodTheme.normal.cardColor,
-                    ),
-                    margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                    width: 325,
-                    child: Padding(
-                      padding: const EdgeInsets.all(25),
-                      child: Row(
-                        children: [
-
-                          SizedBox(
-                            width: 275,
-                            child: Observer(
-                                builder: (context) {
-
-                                  final list = List.generate(
-                                      viewModel.restaurant?.phones.length??0,
-                                      (index){
-                                        return ListTile(
-                                          title: Text(viewModel.restaurant!.phones[index].phone),
-                                        );
-                                      }
-                                  );
-
-                                  return Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-
-                                      Padding(
-                                        padding: const EdgeInsets.only(bottom: 10),
-                                        child: Text("TELEFONES:", style: GalaxyFoodTheme.text.titleSmall,),
-                                      ),
-
-                                      Builder(
-                                        builder: (context) {
-                                          return Container(
-                                            height: 260,
-                                            width: double.maxFinite,
-                                            decoration: BoxDecoration(
-                                              borderRadius: const BorderRadius.all(Radius.circular(5)),
-                                              color: GalaxyFoodTheme.normal.menuColor,
-                                            ),
-                                            padding: const EdgeInsets.all(20),
-                                            child: SingleChildScrollView(
-                                              child: Column(
-                                                children: list,
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                      ),
-                                    ],
-                                  );
-                                }
-                            ),
-                          ),
-
-
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      color: GalaxyFoodTheme.normal.cardColor,
-                    ),
-                    margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                    child: Padding(
-                      padding: const EdgeInsets.all(25),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 15),
-                            child: Row(
-                              children: [
-                                Text(
-                                  viewModel.restaurant?.score.toStringAsFixed(1)??"0.0",
-                                  style: GalaxyFoodTheme.text.headlineMedium,
-                                ),
-                                const Icon(material.Icons.star, color: material.Colors.amber, size: 30,),
-                              ],
-                            ),
-                          ),
-
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(Radius.circular(5)),
-                              color: GalaxyFoodTheme.normal.menuColor,
-                            ),
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              children: [
-                                Text("${viewModel.qtdOrders}  PEDIDOS REALIZADOS"),
-                                Text("${viewModel.qtdFoods} COMIDAS DISPONÍVEIS"),
-                                Text("${viewModel.qtdCombos}  COMBOS DISPONÍVEIS"),
-                              ],
-                            ),
-                          ),
-
-                        ],
-                      ),
-                    ),
-                  ),
-
-
-                  Container(
-                    width: 275,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      color: GalaxyFoodTheme.normal.cardColor,
-                    ),
-                    margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                    padding: const EdgeInsets.all(25),
-                    child: Observer(
-                        builder: (context) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 10),
-                                child: Text("DONO:", style: GalaxyFoodTheme.text.titleSmall,),
-                              ),
-                              Text(viewModel.restaurant?.owner.name??"", style: GalaxyFoodTheme.text.bodyLarge,),
-                              Text(viewModel.restaurant?.owner.cpf??"", style: GalaxyFoodTheme.text.bodyLarge,)
-                            ],
-                          );
-                        }
-                    ),
+                      )
+                    ],
                   )
                 ],
-              )
-            ],
+              ),
+            ),
           ),
 
           const Padding(

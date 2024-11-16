@@ -87,6 +87,33 @@ class ComboRepositoryService{
     }
   }
 
+  static Future<int> getCountCombo(String idRestaurant) async {
+    final endpointUri = Uri.parse("$kApiRequest/get/$idRestaurant");
+
+    final response = await http.get(
+      endpointUri,
+      headers: {
+        'Content-Type':'application/json; charset=UTF-8'
+      },
+    ).timeout(
+        const Duration(seconds: 5),
+        onTimeout: (){
+          throw RepositoryException(status: 408, message: "Falha ao conectar com servidor!");
+        }
+    );
+
+    if (response.statusCode == 200){
+
+      List combosJson = jsonDecode(response.bodyBytes.toUTF8);
+      return combosJson.map((buy){
+        return Combo.fromJson(buy);
+      }).toList().length;
+
+    } else {
+      throw RepositoryException.fromJson(jsonDecode(response.bodyBytes.toUTF8));
+    }
+  }
+
   static Future<Combo> update(Combo combo) async {
     final idRestaurant = await RestaurantRepositoryService.getUserID();
     final endpointUri = Uri.parse("$kApiRequest/update/$idRestaurant/${combo.id}");

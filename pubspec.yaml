@@ -57,7 +57,10 @@ dependencies:
   lottie: ^3.1.2
 
   animated_rating_stars: ^1.0.1
+
   on_popup_window_widget: ^0.0.13
+
+  resizable_widget: ^1.0.5
 
 dev_dependencies:
   flutter_test:
@@ -89,6 +92,7 @@ flutter:
   assets:
     - lib/images/galaxyfood_logo.png
     - lib/images/user_default.png
+    - lib/animations/OrderAnimationLottie.json
 
   fonts:
     - family: Montserrat

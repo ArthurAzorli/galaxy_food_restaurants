@@ -73,7 +73,7 @@ class BuyRepositoryService {
         }
     );
 
-    if (response.statusCode == 200){
+    if (response.statusCode == 202){
       return Buy.fromJson(jsonDecode(response.bodyBytes.toUTF8));
     } else {
       throw RepositoryException.fromJson(jsonDecode(response.bodyBytes.toUTF8));
