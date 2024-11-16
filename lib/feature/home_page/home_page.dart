@@ -49,13 +49,13 @@ class HomePageState extends State<HomePage>{
                         )
                     ),
                     image:
-                    image != null
-                      ? DecorationImage(
+                    image == null || image.isEmpty
+                      ? null
+                      : DecorationImage(
                           fit: BoxFit.cover,
                           opacity: 0.5,
                           image: Image.memory(image).image
-                      )
-                      : null,
+                      ),
                     borderRadius: const BorderRadius.vertical(bottom: Radius.elliptical(1800, 200)),
                     boxShadow: const [
                       BoxShadow(
