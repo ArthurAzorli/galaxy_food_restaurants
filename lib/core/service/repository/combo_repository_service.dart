@@ -179,6 +179,8 @@ class ComboRepositoryService{
         }
     );
 
+    print(jsonDecode(response.bodyBytes.toUTF8));
+
     if (response.statusCode == 201){
       return Combo.fromJson(jsonDecode(response.bodyBytes.toUTF8));
     } else {

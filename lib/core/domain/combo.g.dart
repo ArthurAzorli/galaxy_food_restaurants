@@ -37,5 +37,5 @@ Map<String, dynamic> _$ComboItemToJson(ComboItem instance) => <String, dynamic>{
       'id': instance.id,
       'quantity': instance.quantity,
       'combo': instance.combo,
-      'item': instance.item,
+      'item': ComboItem._itemToJson(instance.item),
     };

@@ -37,8 +37,9 @@ class Combo extends PackageItem{
 @JsonSerializable()
 class ComboItem {
   final String? id;
-  late final int quantity;
+  late int quantity;
   late final String combo;
+  @JsonKey(toJson: _itemToJson)
   late final Food item;
 
   ComboItem({
@@ -47,6 +48,8 @@ class ComboItem {
     required this.combo,
     required this.item
   });
+
+  static _itemToJson(item) => item.id;
 
   factory ComboItem.fromJson(Map<String, dynamic> json) => _$ComboItemFromJson(json);
 

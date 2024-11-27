@@ -1,3 +1,4 @@
+import 'package:animated_tree_view/animated_tree_view.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package_item.dart';
@@ -34,5 +35,23 @@ class Package{
 
   @override
   int get hashCode => id.hashCode;
+
+  TreeNode<Object> toTreeNode([TreeNode<Package>? parent]){
+    TreeNode<Package> package;
+    if (this.parent == null){
+      package = TreeNode.root(
+        data: this
+      );
+    } else {
+      package = TreeNode(
+        data: this,
+        parent: parent
+      );
+    }
+
+    return package
+      ..addAll(children.map((child)=>child.toTreeNode(parent)))
+      ..addAll(items.map((item) => item.toTreeNode(parent)));
+  }
 
 }

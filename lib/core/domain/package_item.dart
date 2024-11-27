@@ -1,3 +1,5 @@
+import 'package:animated_tree_view/tree_view/tree_node.dart';
+import 'package:galaxy_food_restaurants/core/domain/package.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'combo.dart';
@@ -46,6 +48,13 @@ abstract class PackageItem{
       return (json as List<dynamic>).map((e) => (e as num).toInt()).toList();
     }
     return <int>[];
+  }
+
+  TreeNode<PackageItem> toTreeNode([TreeNode<Package>? parent]){
+    return TreeNode(
+        data: this,
+        parent: parent
+    );
   }
 
 }

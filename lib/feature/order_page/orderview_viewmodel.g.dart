@@ -66,6 +66,17 @@ mixin _$OrderViewViewModel on OrderViewViewModelBase, Store {
   }
 
   @override
+  dynamic imprimir() {
+    final _$actionInfo = _$OrderViewViewModelBaseActionController.startAction(
+        name: 'OrderViewViewModelBase.imprimir');
+    try {
+      return super.imprimir();
+    } finally {
+      _$OrderViewViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 selectedBuy: ${selectedBuy},
