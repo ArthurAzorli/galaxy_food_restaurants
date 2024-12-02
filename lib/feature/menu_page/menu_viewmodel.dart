@@ -102,7 +102,6 @@ abstract class MenuViewModelBase with Store {
   );
   if (result.isEmpty) return;
   image = await result.first.readAsBytes();
-  print(image);
  }
 
  @action

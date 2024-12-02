@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:galaxy_food_restaurants/core/domain/restaurant.dart';
 import 'package:galaxy_food_restaurants/core/service/repository/repository_service.dart';
 import 'package:galaxy_food_restaurants/core/utils/bytes.dart';
 import 'package:http/http.dart' as http;
@@ -57,8 +58,8 @@ class RestaurantOwnerRepositoryService{
     }
   }
 
-  static Future<RestaurantOwner> update(RestaurantOwner owner) async {
-    final endpointUri = Uri.parse("$kApiRequest/update/${owner.id}");
+  static Future<RestaurantOwner> update(Restaurant restaurant, RestaurantOwner owner) async {
+    final endpointUri = Uri.parse("$kApiRequest/update/${restaurant.id}");
 
     final response = await http.put(
         endpointUri,

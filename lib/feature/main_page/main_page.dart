@@ -1,5 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:galaxy_food_restaurants/feature/configuration_page/configuration_page.dart';
 import 'package:galaxy_food_restaurants/feature/home_page/home_page.dart';
 import 'package:galaxy_food_restaurants/feature/main_page/main_viewmodel.dart';
 import 'package:galaxy_food_restaurants/feature/menu_page/menu_page.dart';
@@ -61,9 +62,7 @@ class _MainPageState extends State<MainPage>{
                   title: Text("PEDIDOS", style: GalaxyFoodTheme.text.titleMedium,),
                   body: Container(
                     color: GalaxyFoodTheme.normal.scaffoldBackgroundColor,
-                    child: const Center(
-                      child: OrderPage(),
-                    ),
+                    child: const OrderPage(),
                   ),
               ),
               PaneItem(
@@ -71,9 +70,7 @@ class _MainPageState extends State<MainPage>{
                   title: Text("CARDÁPIO", style: GalaxyFoodTheme.text.titleMedium,),
                   body: Container(
                     color: GalaxyFoodTheme.normal.scaffoldBackgroundColor,
-                    child: const Center(
-                      child: MenuPage(),
-                    ),
+                    child: const MenuPage(),
                   ),
               ),
               PaneItem(
@@ -81,9 +78,7 @@ class _MainPageState extends State<MainPage>{
                   title: Text("CONFIGURAÇÕES", style: GalaxyFoodTheme.text.titleMedium,),
                   body: Container(
                     color: GalaxyFoodTheme.normal.scaffoldBackgroundColor,
-                    child: const Center(
-                      child: Text("Config"),
-                    ),
+                    child: const ConfigurationPage(),
                   ),
               ),
             ],

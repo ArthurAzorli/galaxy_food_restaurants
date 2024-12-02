@@ -6,13 +6,13 @@ part 'address.g.dart';
 @JsonSerializable()
 class Address{
 
-  late final String? id;
-  late final String street;
-  late final String number;
-  late final String neighborhood;
-  late final String city;
-  late final String state;
-  late final String cep;
+  late String? id;
+  late String street;
+  late String number;
+  late String neighborhood;
+  late String city;
+  late String state;
+  late String cep;
 
   Address({
     this.id,

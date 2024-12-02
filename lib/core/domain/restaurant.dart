@@ -11,7 +11,7 @@ class Restaurant{
   late final String cnpj;
   late String email;
   late String name;
-  late String? speciality;
+  late String? specialty;
   late List<int>? image;
   late Address address;
   late double score;
@@ -26,7 +26,7 @@ class Restaurant{
     required this.cnpj,
     required this.email,
     required this.name,
-    required this.speciality,
+    required this.specialty,
     this.image,
     required this.address,
     this.score = 0,

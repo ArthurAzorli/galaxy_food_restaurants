@@ -53,7 +53,6 @@ class HomePageState extends State<HomePage>{
                       ? null
                       : DecorationImage(
                           fit: BoxFit.cover,
-                          opacity: 0.5,
                           image: Image.memory(image).image
                       ),
                     borderRadius: const BorderRadius.vertical(bottom: Radius.elliptical(1800, 200)),
@@ -89,7 +88,7 @@ class HomePageState extends State<HomePage>{
                           padding: const EdgeInsets.only(bottom: 20),
                           child: SizedBox(
                               width: double.maxFinite,
-                              child: Text(viewModel.restaurant?.speciality??"", style: GalaxyFoodTheme.text.titleMedium, textAlign: TextAlign.start,)
+                              child: Text(viewModel.restaurant?.specialty??"", style: GalaxyFoodTheme.text.titleMedium, textAlign: TextAlign.start,)
                           ),
                         ),
 
