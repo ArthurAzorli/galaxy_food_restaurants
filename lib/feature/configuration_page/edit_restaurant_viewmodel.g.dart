@@ -61,19 +61,19 @@ mixin _$EditRestaurantViewModel on EditRestaurantViewModelBase, Store {
     });
   }
 
-  late final _$specialityEditingControllerAtom = Atom(
-      name: 'EditRestaurantViewModelBase.specialityEditingController',
+  late final _$specialtyEditingControllerAtom = Atom(
+      name: 'EditRestaurantViewModelBase.specialtyEditingController',
       context: context);
 
   @override
   TextEditingController get specialtyEditingController {
-    _$specialityEditingControllerAtom.reportRead();
+    _$specialtyEditingControllerAtom.reportRead();
     return super.specialtyEditingController;
   }
 
   @override
   set specialtyEditingController(TextEditingController value) {
-    _$specialityEditingControllerAtom
+    _$specialtyEditingControllerAtom
         .reportWrite(value, super.specialtyEditingController, () {
       super.specialtyEditingController = value;
     });

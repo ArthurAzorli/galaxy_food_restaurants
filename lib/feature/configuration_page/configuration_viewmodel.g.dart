@@ -119,6 +119,18 @@ mixin _$ConfigurationViewModel on ConfigurationViewModelBase, Store {
   }
 
   @override
+  dynamic onSaveRestaurant(
+      material.BuildContext context, Restaurant restaurant) {
+    final _$actionInfo = _$ConfigurationViewModelBaseActionController
+        .startAction(name: 'ConfigurationViewModelBase.onSaveRestaurant');
+    try {
+      return super.onSaveRestaurant(context, restaurant);
+    } finally {
+      _$ConfigurationViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic editRestaurantOwner(material.BuildContext context) {
     final _$actionInfo = _$ConfigurationViewModelBaseActionController
         .startAction(name: 'ConfigurationViewModelBase.editRestaurantOwner');

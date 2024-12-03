@@ -220,7 +220,7 @@ class ConfigurationPageState extends State<ConfigurationPage>{
                       height: 80,
                       width: double.maxFinite,
                       child: GalaxyButton(
-                          onPressed: () {},
+                          onPressed: () => viewModel.deleteRestaurant(context),
                           child: Text("DELETAR RESTAURANTE", style: GalaxyFoodTheme.text.titleMedium,)
                       ),
                     ),
@@ -232,7 +232,7 @@ class ConfigurationPageState extends State<ConfigurationPage>{
                       height: 80,
                       width: double.maxFinite,
                       child: GalaxyButton(
-                          onPressed: () {},
+                          onPressed: () => viewModel.deleteOwner(context),
                           child: Text("DELETAR DONO", style: GalaxyFoodTheme.text.titleMedium,)
                       ),
                     ),
