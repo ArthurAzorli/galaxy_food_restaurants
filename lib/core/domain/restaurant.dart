@@ -16,6 +16,7 @@ class Restaurant{
   late Address address;
   late double score;
   late List<Phone> phones;
+  @JsonKey(toJson: ownerToJson)
   late RestaurantOwner owner;
 
   @JsonKey(includeFromJson: false, includeToJson: true, name: "password")
@@ -48,4 +49,6 @@ class Restaurant{
     if (other is Phone && other.id == id) return true;
     return false;
   }
+
+  static String ownerToJson(RestaurantOwner owner) => owner.id!;
 }

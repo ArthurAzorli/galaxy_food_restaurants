@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:galaxy_food_restaurants/core/domain/restaurant.dart';
 import 'package:galaxy_food_restaurants/core/service/repository/repository_service.dart';
+import 'package:galaxy_food_restaurants/core/service/repository/restaurant_repository_service.dart';
 import 'package:galaxy_food_restaurants/core/utils/bytes.dart';
 import 'package:http/http.dart' as http;
 import '../../domain/restaurant_owner.dart';
@@ -58,6 +59,30 @@ class RestaurantOwnerRepositoryService{
     }
   }
 
+  static Future<dynamic> exists(String cpf) async {
+    var url = "$kApiRequest/exists/$cpf";
+
+    final endpointUri = Uri.parse(url);
+
+    final response = await http.get(
+      endpointUri,
+      headers: {
+        'Content-Type':'application/json; charset=UTF-8'
+      },
+    ).timeout(
+        const Duration(seconds: 5),
+        onTimeout: (){
+          throw RepositoryException(status: 408, message: "Falha ao conectar com servidor!");
+        }
+    );
+
+    if (response.statusCode == 200){
+      return jsonDecode(response.bodyBytes.toUTF8);
+    } else {
+      throw RepositoryException.fromJson(jsonDecode(response.bodyBytes.toUTF8));
+    }
+  }
+
   static Future<RestaurantOwner> update(Restaurant restaurant, RestaurantOwner owner) async {
     final endpointUri = Uri.parse("$kApiRequest/update/${restaurant.id}");
 
@@ -82,19 +107,27 @@ class RestaurantOwnerRepositoryService{
   }
 
   static Future<bool> delete({required String user, required String password}) async {
-    final endpointUri = Uri.parse("$kApiRequest/delete");
+    final restaurant = await RestaurantRepositoryService.getUserID();
+    final endpointUri = Uri.parse("$kApiRequest/delete/$restaurant");
+
+    final json = {
+      "login": user,
+      "password": password
+    };
 
     final response = await http.delete(
         endpointUri,
         headers: {
           'Content-Type':'application/json; charset=UTF-8'
         },
+      body: jsonEncode(json)
     ).timeout(
         const Duration(seconds: 5),
         onTimeout: (){
           throw RepositoryException(status: 408, message: "Falha ao conectar com servidor!");
         }
     );
+
 
     if (response.statusCode == 200){
       return jsonDecode(response.bodyBytes.toUTF8)["result"];

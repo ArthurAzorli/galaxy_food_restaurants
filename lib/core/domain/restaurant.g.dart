@@ -34,6 +34,6 @@ Map<String, dynamic> _$RestaurantToJson(Restaurant instance) =>
       'address': instance.address,
       'score': instance.score,
       'phones': instance.phones,
-      'owner': instance.owner,
+      'owner': Restaurant.ownerToJson(instance.owner),
       'password': instance._password,
     };

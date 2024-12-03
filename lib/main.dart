@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/utils/route/go_route.dart';
 import 'feature/main_page/main_page.dart';
 import 'feature/signin_page/signin_page.dart';
+import 'feature/signup_page/signup_page.dart';
 import 'galaxy_theme.dart';
 
 
@@ -34,32 +35,17 @@ GoRouter _router = GoRouter(
       buildChild: (BuildContext context, GoRouterState state) => const SignInPage(),
       restorationId: "SignIn-Page"
     ),
-/*
+
     GoRouteUtils.buildHorizontalRoute(
         path: "/signup",
         buildChild: (BuildContext context, GoRouterState state) => const SignUpPage(),
         restorationId: "SignUp-Page"
     ),
-*/
+
     GoRouteUtils.buildHorizontalRoute(
         path: "/",
         buildChild: (BuildContext context, GoRouterState state) => const MainPage(),
-        restorationId: "Main-Page",
-        routes: [
-
-          /*GoRouteUtils.buildHorizontalRoute(
-            path: "restaurant",
-            buildChild: (BuildContext context, GoRouterState state) => const RestaurantPage(),
-            restorationId: "Restaurant-Page"
-          ),
-
-          GoRouteUtils.buildHorizontalRoute(
-              path: "edit",
-              buildChild: (BuildContext context, GoRouterState state) => const EditUserPage(),
-              restorationId: "EditUser-Page"
-          )*/
-
-        ]
+        restorationId: "Main-Page"
     ),
   ],
 );

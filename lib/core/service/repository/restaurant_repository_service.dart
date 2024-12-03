@@ -60,7 +60,7 @@ class RestaurantRepositoryService{
 
   static Future<Restaurant> create(Restaurant restaurant) async {
     final endpointUri = Uri.parse("$kApiRequest/create");
-
+    print(jsonEncode(restaurant.toJson()));
     final response = await http.post(
         endpointUri,
         headers: {
