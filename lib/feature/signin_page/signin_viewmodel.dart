@@ -20,13 +20,13 @@ abstract class SignInViewModelBase with Store{
   var emailFocus = FocusNode();
 
   @observable
-  var emailEditingController = TextEditingController()..text="siri.cascudo@gmail.com";
+  var emailEditingController = TextEditingController();
 
   @observable
   var passwordFocus = FocusNode();
 
   @observable
-  var passwordEditingController = TextEditingController()..text="12345678";
+  var passwordEditingController = TextEditingController();
 
   @action
   void changeVisibilityPassword(){
