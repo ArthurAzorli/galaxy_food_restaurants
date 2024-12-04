@@ -469,7 +469,6 @@ abstract class MenuViewModelBase with Store {
   try{
    root = await PackageRepositoryService.root();
    foods = await FoodRepositoryService.getAll();
-   print(foods);
    root!.toTreeNode();
   } on RepositoryException catch(e){
    e.showMessageDialog(context, (){
