@@ -66,11 +66,11 @@ mixin _$OrderViewViewModel on OrderViewViewModelBase, Store {
   }
 
   @override
-  dynamic imprimir() {
+  dynamic printing() {
     final _$actionInfo = _$OrderViewViewModelBaseActionController.startAction(
-        name: 'OrderViewViewModelBase.imprimir');
+        name: 'OrderViewViewModelBase.printing');
     try {
-      return super.imprimir();
+      return super.printing();
     } finally {
       _$OrderViewViewModelBaseActionController.endAction(_$actionInfo);
     }

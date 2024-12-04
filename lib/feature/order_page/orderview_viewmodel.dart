@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:galaxy_food_restaurants/core/service/pdf_generate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobx/mobx.dart';
 
@@ -41,7 +42,7 @@ abstract class OrderViewViewModelBase with Store {
   }
 
   @action
-  imprimir(){
-    print("em breve");
+  printing(){
+    PDFGenerate(selectedBuy!).build().save();
   }
 }

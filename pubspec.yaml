@@ -61,10 +61,17 @@ dependencies:
   on_popup_window_widget: ^0.0.13
 
   resizable_widget: ^1.0.5
+
   animated_tree_view: ^2.3.0
+
   flutter_context_menu: ^0.2.0
+
   image_picker: ^1.1.2
   image_picker_windows: ^0.2.1+1
+
+  pdf: ^3.11.1
+
+  printing: ^5.13.4
 
 dev_dependencies:
   flutter_test:

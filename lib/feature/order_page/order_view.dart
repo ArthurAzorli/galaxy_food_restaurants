@@ -348,7 +348,7 @@ class _OrderViewState extends State<OrderView>{
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 10),
                                 child: GalaxyButton(
-                                    onPressed: () => viewModel.imprimir(),
+                                    onPressed: () => viewModel.printing(),
                                     child: const Text("IMPRIMIR")
                                 ),
                               ),
