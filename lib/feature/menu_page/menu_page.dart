@@ -347,7 +347,7 @@ class _MenuPageState extends State<MenuPage> {
           width: double.maxFinite,
           height: 60,
           child: GalaxyButton(
-              onPressed: () => viewModel.onSaveFood(context),
+              onPressed: () => viewModel.onSavePackage(context),
               child: const Text("SALVAR")
           ),
         ),
